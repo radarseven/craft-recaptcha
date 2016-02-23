@@ -30,7 +30,7 @@ class RecaptchaVariable
         }
 
         // Plugin settings
-        $settings = $this->getPluginSettings();
+        $settings = $this->_getPluginSettings();
 
         // Template rendering for plugin.
         $oldTemplatesPath = craft()->path->getTemplatesPath();
@@ -58,10 +58,22 @@ class RecaptchaVariable
     }
 
     /**
+     * Get the Google Recaptcha site key.
+     * Necessary for rendering widgets.
+     * @return string
+     */
+    public function getSiteKey()
+    {
+        $settings = $this->_getPluginSettings();
+
+        return $settings->attributes['siteKey'];
+    }
+
+    /**
      * Return the plugin's settings.
      * @return mixed
      */
-    protected function getPluginSettings()
+    protected function _getPluginSettings()
     {
         $plugin   = craft()->plugins->getPlugin('recaptcha');
         $settings = $plugin->getSettings();
