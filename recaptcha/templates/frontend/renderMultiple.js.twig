@@ -1,0 +1,23 @@
+{# See https://developers.google.com/recaptcha/docs/display#explicit_render for more info
+on explicitly rendering multiple widgets. #}
+{% if ids is defined and ids|length and siteKey is defined %}
+{% spaceless %}
+
+    {% set theme = theme is defined ? theme : 'light' %}
+    <script type="text/javascript">
+        {# var verifyCallback = function(response) {
+            alert(response);
+        }; #}
+        var onloadCallback = function() {
+            {% for id in ids %}
+            grecaptcha.render('{{ id }}', {
+                'sitekey' : '{{ siteKey }}',
+                {# 'callback' : verifyCallback, #}
+                'theme' : '{{ theme }}'
+            });
+            {% endfor %}
+        };
+    </script>
+
+{% endspaceless %}
+{% endif %}
