@@ -9,7 +9,28 @@ Craft plugin to dispaly Google's new reCaptcha form widget and validate response
 
 ##Usage
 ###Templates
+#### `render`
+##### Render a Single Widget
 To display a reCAPTCHA widget in any template, use `{{craft.recaptcha.render()}}`.
+
+#### `renderMultiple`
+##### [Render Multiple Widgets Explicitly](https://developers.google.com/recaptcha/docs/display#explicit_render)
+If you need to render multiple unique widgets on a page, use the `renderMultiple` method. This method takes one argument, which is an array of HTML element ID's that should be rendered as widgets.
+ 
+In the example below, the three `<div>`s will be rendered as widgets.
+
+    <div id="widget-1"></div>
+    <div id="widget-2"></div>
+    <div id="widget-3"></div>
+    {{ craft.recaptcha.renderMultiple(['widget-1', 'widget-2', 'widget-3']) }}
+    
+**Note:** The `render` and `renderMultiple` methods should not be used on the same page/template. The API script is automatically injected with each method.
+
+#### `getSiteKey`
+##### Plugin Settings
+In some cases, you may need to manually render widget(s) using the Javascript [API](https://developers.google.com/recaptcha/docs/display#js_api). To do this, you'll need the API `sitekey`. You can use the `getSiteKey` method to return the `sitekey` from the plugin's settings.
+
+    {{ craft.recaptcha.getSiteKey }}
 
 ###User Registration Form
 To use the Recaptcha in a front-end [User Registration](http://buildwithcraft.com/docs/templating/user-registration-form) form, simply do this:

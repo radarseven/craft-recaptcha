@@ -32,6 +32,11 @@ class RecaptchaPlugin extends BasePlugin
 		return 'https://github.com/aberkie';
 	}
 
+	function getDocumentationUrl()
+	{
+		return 'https://github.com/radarseven/craft-recaptcha';
+	}
+
 	protected function defineSettings()
 	{
 		return array(
